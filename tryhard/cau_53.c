@@ -1,49 +1,55 @@
-
 #include <stdio.h>
-#define maxn 9999
-#define max(a, b) ((a) < (b) ? (b) : (a))
+#define oo 99999
+#define read(a) scanf("%d", &a)
+#define read2(a, b) scanf("%d%d", &a, &b)
+#define read3(a, b, c) scanf("%d%d%d", &a, &b, &c)
+#define read4(a, b, c, d) scanf("%d%d%d%d", &a, &b, &c, &d)
+#define debug(a) fprintf(stderr, "#DEBUG: %s = %d\n", #a, a)
+#define maxn 1000
+
+int q[9999], f = -1, r = -1;
+int n, m;
+int a[maxn][maxn], deg[maxn], rank[maxn];
+
 int main() {
-  int n, m;
-  scanf("%d%d", &n, &m);
-  int a[n + 1][n + 1], b[n + 1], ra[n + 1];
+  read2(n, m);
   for (int i = 1; i <= n; i++) {
-    b[i] = ra[i] = 0;
     for (int j = 1; j <= n; j++)
       a[i][j] = 0;
+    deg[i] = 0;
   }
-  while (m--) {
+
+  for (int i = 0; i < m; i++) {
     int u, v;
-    scanf("%d%d", &u, &v);
-    a[u][v] = 1;
-    b[v]++;
-  }
-
-  int q[9999], f = -1, r = -1;
-
-  for (int u = 1; u <= n; u++) {
-    if (!b[u]) {
-      q[++r] = u;
-      ra[u] = 1;
+    read2(u, v);
+    if (!a[u][v]) {
+      deg[v]++;
+      a[u][v] = 1;
     }
   }
+  for (int u = 1; u <= n; u++)
+    if (!deg[u]) {
+      q[++r] = u;
+      rank[u] = 0;
+    }
+
   while (f != r) {
     int u = q[++f];
-    for (int v = 1; v <= n; v++) {
+    for (int v = 1; v <= n; v++)
       if (a[u][v]) {
-        b[v]--;
-        if (!b[v]) {
+        deg[v]--;
+        if (!deg[v]) {
           q[++r] = v;
-          ra[v] = ra[u] + 1;
+          rank[v] = rank[u] + 1;
         }
       }
-    }
   }
 
-  for (int i = 1; i <= n; i++) {
-    // printf("\n%d: ", i);
-    for (int u = 1; u <= n; u++)
-      if (ra[u] == i)
+  for (int i = 0; i <= n; i++) {
+    for (int u = 1; u <= n; u++) {
+      if (rank[u] == i)
         printf("%d ", u);
+    }
   }
   return 0;
 }

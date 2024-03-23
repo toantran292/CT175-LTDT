@@ -6,23 +6,19 @@ typedef struct {
   int size;
 } List;
 
-void makeNullList(List *L){
-  L->size = 0;
+void makeNullList(List *L) { L->size = 0; }
+int emptyList(List *L) { return L->size == 0; }
+int elementAt(List *L, int i) { return L->data[i - 1]; }
+void pushBack(List *L, int x) {
+  if (L->size + 1 == length)
+    return;
+  L->data[L->size++] = x;
 }
-int emptyList(List *L){
-  return L->size == 0;
-}
-int elementAt(List *L, int i){
-  return L->data[i-1];
-}
-void pushBack(List *L, int x){
-  if ( L->size + 1 == length) return;
-  L->data[L->size++]=x;
-}
-void copyList(List *D, List *L){
+void copyList(List *D, List *L) {
   makeNullList(D);
-  if(emptyList(L)) return;
-  for(int i = 1; i <= L->size; i++){
+  if (emptyList(L))
+    return;
+  for (int i = 1; i <= L->size; i++) {
     pushBack(D, elementAt(L, i));
   }
 }
@@ -49,31 +45,34 @@ void addEdge(Graph *pG, int u, int v) {
 
 int r[maxn];
 
-void rank(Graph *G){
+void rank(Graph *G) {
   int d[maxn], n = G->n;
-  for(int u = 1; u <= n; u++){
+  for (int u = 1; u <= n; u++) {
     d[u] = 0;
-    for(int v = 1; v <= n; v++){
-      if(G->arr[v][u]) d[u]++;
+    for (int v = 1; v <= n; v++) {
+      if (G->arr[v][u])
+        d[u]++;
     }
   }
 
   List A, B;
   makeNullList(&A);
-  for(int u = 1; u <= n; u++){
-    if(!d[u]) pushBack(&A, u);
+  for (int u = 1; u <= n; u++) {
+    if (!d[u])
+      pushBack(&A, u);
   }
   int k = 0;
-  while(!emptyList(&A)){
+  while (!emptyList(&A)) {
     makeNullList(&B);
-    for(int i = 1; i <= A.size; i++){
+    for (int i = 1; i <= A.size; i++) {
       int u = elementAt(&A, i);
       r[u] = k;
 
-      for(int v = 1; v <= G->n; v++){
-        if(G->arr[u][v]) {
+      for (int v = 1; v <= G->n; v++) {
+        if (G->arr[u][v]) {
           d[v]--;
-          if(!d[v]) pushBack(&B, v);
+          if (!d[v])
+            pushBack(&B, v);
         }
       }
     }
@@ -82,12 +81,12 @@ void rank(Graph *G){
   }
 }
 
-int main(){
+int main() {
   Graph G;
   int n, m;
   scanf("%d%d", &n, &m);
   initGraph(&G, n);
-  for(int i = 0; i < m; i++){
+  for (int i = 0; i < m; i++) {
     int u, v;
     scanf("%d%d", &u, &v);
     addEdge(&G, u, v);
@@ -95,9 +94,11 @@ int main(){
 
   rank(&G);
 
-  printf("Xep hang dinh cua do thi:\n");
-  for(int u = 1; u <= G.n; u++)
-    printf("rank[%d] = %d\n", u, r[u]);
+  // printf("Xep hang dinh cua do thi:\n");
+  for (int i = 0; i <= n; i++)
+    for (int u = 1; u <= G.n; u++)
+      if (r[u] == i)
+        printf("%d ", u);
 
   return 0;
 }
