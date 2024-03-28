@@ -20,7 +20,7 @@ void bfs(int u) {
     for (int v = 1; v <= n; v++) {
       if (a[u][v]) {
         if (color[u] == color[v]) {
-          f = 9999;
+          cnt[0] = cnt[1] = -1;
           return;
         } else if (color[v] == -1) {
           color[v] = !color[u];
@@ -45,11 +45,9 @@ int main() {
   }
 
   for (int u = 1; u <= n; u++)
-    if (color[u] == -1)
+    if (color[u] == -1 && cnt[0] != -1)
       bfs(u);
 
-  if (f == 9999)
-    cnt[0] = cnt[1] = -1;
   printf("%d %d", cnt[0], cnt[1]);
 
   return 0;
