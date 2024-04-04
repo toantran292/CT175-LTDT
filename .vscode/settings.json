@@ -1,0 +1,6 @@
+{
+  "C_Cpp.errorSquiggles": "disabled",
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
+  "cph.general.menuChoices": "cpp",
+  "cph.language.cpp.Command": "g++-11"
+}

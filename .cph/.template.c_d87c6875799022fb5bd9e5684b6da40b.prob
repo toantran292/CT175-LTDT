@@ -1,0 +1,1 @@
+{"name":"Local: template","url":"/home/toantran292/Developments/Study/CT175/template.c","tests":[{"id":1712231930127,"input":"9 8\n1 2\n1 3\n1 4\n1 5\n1 6\n1 7\n1 8\n1 9","output":"1 8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/toantran292/Developments/Study/CT175/template.c","group":"local","local":true}
