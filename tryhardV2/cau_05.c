@@ -120,7 +120,8 @@ int main() {
     FOR(u, 1, n) {
         if (par[u] != -1) {
             y++;
-            x += g[par[u]][u];
+            // x += g[par[u]][u];
+            x += cost[u];
         }
     }
 
