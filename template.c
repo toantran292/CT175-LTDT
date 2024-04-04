@@ -15,7 +15,7 @@
 #define read(...) VFUNC(read, __VA_ARGS__)
 // FOR
 #define FOR3(i, a, b) for (int i = (a); i <= (b); i++)
-#define FOR6(i, a, b, j, c, d) FOR(i, a, b) FOR(j, c, d)
+#define FOR6(i, a, b, j, c, d) FOR3(i, a, b) FOR3(j, c, d)
 #define FOR(...) VFUNC(FOR, __VA_ARGS__)
 // PRINT
 #define endline printf("\n")
@@ -84,6 +84,5 @@ int cost[maxn];
 
 int main() {
     // Import Your Code Here
-
     return 0;
 }
