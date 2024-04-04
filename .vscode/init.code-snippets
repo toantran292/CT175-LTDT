@@ -87,9 +87,8 @@
 			"int cost[maxn];",
 			"",
 			"int main() {",
-			"",
+			"    //Import Your Code Here",
 			"    ${1}",
-			"",
 			"    return 0;",
 			"}",
 			""

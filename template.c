@@ -82,4 +82,8 @@ int color[maxn];
 // dijkstra
 int cost[maxn];
 
-int main() { return 0; }
+int main() {
+    // Import Your Code Here
+
+    return 0;
+}
